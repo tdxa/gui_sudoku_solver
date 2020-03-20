@@ -1,4 +1,4 @@
-package sample;
+package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +23,7 @@ public class Controller implements Initializable {
         drawOnCanvas(context);
     }
 
-    public void drawOnCanvas(GraphicsContext context){
+    private void drawOnCanvas(GraphicsContext context){
 
         context.clearRect(0, 0, 450, 450);
         for(int row = 0; row<9; row++) {
