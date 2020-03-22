@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -24,6 +25,8 @@ public class Controller implements Initializable {
     Button btn_reset;
     @FXML
     Canvas canvas;
+    @FXML
+    Label lb_time;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -92,13 +95,32 @@ public class Controller implements Initializable {
         this.gameBoard = new GameBoard();
         GraphicsContext context_reset = canvas.getGraphicsContext2D();
         drawOnCanvas(context_reset);
+        lb_time.setText("");
     }
 
     public void buttonSolvePressed(){
         SudokuMapper sudokuMapper = new SudokuMapper();
         SudokuSolverEngine sudokuSolverEngine = new SudokuSolverEngine(gameBoard.getBoardStateManager(),sudokuMapper);
-        sudokuSolverEngine.solve(gameBoard.getStarting());
-        GraphicsContext context = canvas.getGraphicsContext2D();
-        drawOnCanvas(context);
+        //sudokuSolverEngine.solve(gameBoard.getStarting());
+
+
+        long startTimer = System.currentTimeMillis();
+        boolean isSolved = sudokuSolverEngine.solve(gameBoard.getStarting());
+
+        if (isSolved) {
+            lb_time.setText("Succes!\n" + "Puzzle solved in\n " + (System.currentTimeMillis() - startTimer) + "\nmillisecond");
+            lb_time.setWrapText(true);
+            GraphicsContext context = canvas.getGraphicsContext2D();
+            drawOnCanvas(context);
+        }else {
+            lb_time.setText("Failure");
+            // clear board ??
+            GraphicsContext context = canvas.getGraphicsContext2D();
+            context.clearRect(0, 0, 450, 450);
+            drawOnCanvas(context);
+        }
+
+
+
     }
 }
