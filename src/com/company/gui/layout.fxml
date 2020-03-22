@@ -8,10 +8,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" styleClass="base_pane" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.gui.Controller">
    <children>
-      <Button fx:id="btn_solve" layoutX="525.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#buttonSolvePressed" stylesheets="@application.css" text="SOLVE" />
-      <Button fx:id="btn_reset" layoutX="625.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#buttonResetPressed" stylesheets="@application.css" text="RESET" />
+      <Button fx:id="btn_solve" layoutX="525.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#buttonSolvePressed" prefHeight="31.0" prefWidth="160.0" stylesheets="@application.css" text="SOLVE" />
+      <Button fx:id="btn_reset" layoutX="525.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#buttonResetPressed" prefHeight="31.0" prefWidth="160.0" stylesheets="@application.css" text="RESET" />
       <Canvas fx:id="canvas" height="450.0" layoutX="14.0" layoutY="14.0" width="450.0" />
-      <Label fx:id="lb_time" layoutX="525.0" layoutY="320.0" prefHeight="145.0" prefWidth="160.0" stylesheets="@application.css" textAlignment="CENTER" textFill="#d3d3d3" wrapText="true">
+      <Label fx:id="lb_time" layoutX="525.0" layoutY="200.0" prefHeight="145.0" prefWidth="160.0" stylesheets="@application.css" textAlignment="CENTER" textFill="#d3d3d3" textOverrun="CENTER_ELLIPSIS" wrapText="true">
          <font>
             <Font size="18.0" />
          </font></Label>

@@ -1,9 +1,6 @@
 package com.company.Controller;
 
-import com.company.Strategies.BacktrackStrategy;
-import com.company.Strategies.ISudokuStrategy;
-import com.company.Strategies.MarkUpStrategy;
-import com.company.Strategies.NakedPairStrategy;
+import com.company.Strategies.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +18,7 @@ public class SudokuSolverEngine {
         List<ISudokuStrategy> strategies = new LinkedList<>();
         strategies.add(new MarkUpStrategy(sudokuMapper));
         strategies.add(new NakedPairStrategy(sudokuMapper));
-        //strategies.add(new BacktrackStrategyNPS(sudokuMapper));
+        strategies.add(new BacktrackStrategyNPS(sudokuMapper));
 
         String currentState = sudokuBoardStateManager.generateState(sudokuBoard);
         String nextState = sudokuBoardStateManager.generateState(strategies.get(0).solve(sudokuBoard));

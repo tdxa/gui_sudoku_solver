@@ -36,9 +36,7 @@ public class Controller implements Initializable {
         drawOnCanvas(context);
     }
 
-    private void drawOnCanvas(GraphicsContext context) {
-
-        //drawing empty board
+    private void drawBoard(GraphicsContext context) {
         context.clearRect(0, 0, 450, 450);
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -66,9 +64,14 @@ public class Controller implements Initializable {
                     context.setFill(Color.LIGHTSKYBLUE);
                     context.fillRoundRect(position_x, position_y, width, width, 10, 10);
                 }
-
             }
         }
+    }
+
+    private void drawOnCanvas(GraphicsContext context) {
+
+        //drawing empty board
+        drawBoard(context);
 
         //drawing the initial numbers from GameBoard class
 
@@ -101,14 +104,12 @@ public class Controller implements Initializable {
     public void buttonSolvePressed(){
         SudokuMapper sudokuMapper = new SudokuMapper();
         SudokuSolverEngine sudokuSolverEngine = new SudokuSolverEngine(gameBoard.getBoardStateManager(),sudokuMapper);
-        //sudokuSolverEngine.solve(gameBoard.getStarting());
-
 
         long startTimer = System.currentTimeMillis();
         boolean isSolved = sudokuSolverEngine.solve(gameBoard.getStarting());
 
         if (isSolved) {
-            lb_time.setText("Succes!\n" + "Puzzle solved in\n " + (System.currentTimeMillis() - startTimer) + "\nmillisecond");
+            lb_time.setText("Succes!\n" + "Puzzle solved in " + (System.currentTimeMillis() - startTimer) + " millisecond");
             lb_time.setWrapText(true);
             GraphicsContext context = canvas.getGraphicsContext2D();
             drawOnCanvas(context);
@@ -116,8 +117,7 @@ public class Controller implements Initializable {
             lb_time.setText("Failure");
             // clear board ??
             GraphicsContext context = canvas.getGraphicsContext2D();
-            context.clearRect(0, 0, 450, 450);
-            drawOnCanvas(context);
+            drawBoard(context);
         }
 
 
